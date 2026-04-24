@@ -6,6 +6,7 @@
 \usepackage{chngcntr}
 \counterwithin{table}{section}
 \usepackage{tikz}
+\usepackage{longtable}
 
 \title{SCADS Software Requirements Specification}
 \author{jake baldwin}
@@ -15,32 +16,59 @@
     \maketitle
 
     \section{Scope}
-    The Software Requirements Specification (SRS) identifies the requirements
-    for the Spacecraft Cube Attitude Determination System (SCADS).
+        This document specifies the software requirements for the Spacecraft Cube 
+        Attitude Determination System (SCADS) v1.0. SCADS v1.0 is a portfolio 
+        demonstration project implementing a fault-tolerant finite state machine 
+        for attitude determination and control on a simulated 1U CubeSat platform, 
+        running on bare-metal hardware under FreeRTOS.
+        The v1.0 scope covers:
+        \begin{itemize}
+            \item Five-state operational finite state machine with formally 
+                    defined transitions
+            \item Fault detection for sensor dropout, out-of-range readings,
+                    task overruns, watchdog events, and estimator divergence
+            \item Attitude estimation using a simplified estimator with 
+                    characterized uncertainty growth
+            \item Attitude control for Detumble and Safe modes; Nominal-mode 
+                    control is implemented as a stub that maintains zero
+                    commanded torque for attitude hold
+            \item Ground command processing for a minimal command set
+            \item Local event and state logging to non-volatile storage
+        \end{itemize}
+        The following capabilities are deferred to v2.0 and beyond:
+        \begin{itemize}
+            \item Full attitude tracking control for arbitrary commanded 
+                    attitudes
+            \item Translational maneuver execution (thruster control)
+            \item Ground telemetry packet generation and transmission
+            \item Mission-time correlation and absolute time synchronization
+            \item Multi-sensor fusion estimation 
+                    (e.g., Extended Kalman Filter)
+            \item Sensor redundancy and voting
+        \end{itemize}
+        Requirements related to deferred capabilities are not included in this document.
 
-        \subsection{Document Overview}
-            
-    
+
         \subsection{Related Documents}
-            \begin{itemize}[label={}]
-                \item The Software Development Plan (SDP)
-                \item The System and Software Design Description (SSDD)
-                \item The Software Test Plan and Processing Procedures (STP)
-            \end{itemize}
+        \begin{itemize}[label={}]
+            \item The Software Development Plan (SDP)
+            \item The System and Software Design Description (SSDD)
+            \item The Software Test Plan and Processing Procedures (STP)
+        \end{itemize}
 
-    \section{Definitions and Acronyms}
+        \subsection{Definitions and Acronyms}
 
-        \begin{table}[H]
-        \caption{Definitions and Acronyms}
-        \vspace{4pt}
-        \centering
-        \renewcommand{\arraystretch}{1.4}
-        \begin{tabular}{|l|p{14cm}|}
-        \hline
-        \textbf{Requirement ID} & \textbf{Requirements} \\ \hline
-        SRS-F-REQ-001 & Spacecraft Cube Attitude Determination System  \\ \hline
-        \end{tabular}
-        \end{table}
+            \begin{table}[H]
+            \caption{Definitions and Acronyms}
+            \vspace{4pt}
+            \centering
+            \renewcommand{\arraystretch}{1.4}
+            \begin{tabular}{|l|p{14cm}|}
+            \hline
+            \textbf{Requirement ID} & \textbf{Requirements} \\ \hline
+            SRS-F-REQ-001 & Spacecraft Cube Attitude Determination System  \\ \hline
+            \end{tabular}
+            \end{table}
 
 
     \section{Functional Requirements}
@@ -279,39 +307,106 @@
             \end{tabular}
             \end{table}
 
+
         \subsection{Core Functional Requirements}
 
-            Attitude estimation (run the estimator, output current quaternion + uncertainty)
-            Attitude control (compute actuator commands from desired vs. current attitude)
-            Sensor data acquisition (read from sensors at some rate, convert raw to physical units)
-            Actuator command generation (send commands to actuators at some rate)
-            Command processing (accept ground commands, validate, dispatch)
-            Telemetry generation (package state data, send to ground)
-            Health monitoring (track sensor/actuator/task health, feed into fault detection)
-            Time management (maintain mission time, handle time correlation)
+            The following table outlines the core functional requirements of
+            SCADS.
 
-            \begin{table}[H]
-            \caption{Functional Requirements}
-            \vspace{4pt}
-            \centering
             \renewcommand{\arraystretch}{1.4}
-            \begin{tabular}{|l|p{9cm}|p{5cm}|}
+            \begin{longtable}{|l|p{9cm}|p{5cm}|}
+            \caption{Functional Requirements} \\
             \hline
-            \textbf{Requirement ID} & \textbf{Requirements} & \textbf{Acceptance Criteria} \\ \hline
-            SCADS-F-REQ-001 & Spacecraft Cube Attitude Determination System & AC \\ \hline
-            \end{tabular}
-            \end{table}
+            \textbf{Requirement ID} & \textbf{Requirement} & 
+                \textbf{Acceptance Criteria} \\ \hline
+            \endfirsthead
+
+            \hline
+            \textbf{Requirement ID} & \textbf{Requirement} & 
+                \textbf{Acceptance Criteria} \\ \hline
+            \endhead
+            \hline
+            \endfoot
+            SCADS-FR-REQ-001 & The SCADS shall compute an attitude estimate at 
+                               a rate of no less than 
+                               ATTITUDE\_ESTIMATE\_RATE\_HZ.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-002 & The attitude estimate shall consist of a 
+                               quaternion representing spacecraft 
+                               body-to-inertial orientation and an associated 
+                               uncertainty value.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-003 & The attitude uncertainty shall be expressed in 
+                               units of radians.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-004 & The attitude estimator shall make its estimates 
+                               available for use to other spacecraft systems.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-005 & The SCADS shall compute actuator commands at a 
+                               rate of no less than CONTROL\_LOOP\_RATE\_HZ.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-006 & In Detumble, the SCADS shall compute actuator 
+                               commands that reduce spacecraft rotation rate.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-007 & In safe, the SCADS shall compute actuator 
+                               commands that orient solar arrays toward the sun.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-008 & In Nnminal, the SCADS shall compute actuator 
+                               commands that maintain the commanded attitude.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-009 & The SCADS shall acquire sensor readings at a
+                               rate of no less than 
+                               SENSOR\_ACQUISITION\_RATE\_HZ.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-010 & The SCADS shall convert raw sensor readings into 
+                               physical units prior to use by other subsystems.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-011 & Each sensor reading shall be associated with a 
+                               timestamp indicating the time of acquisition.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-012 & The SCADS shall issue actuator commands every 
+                               control cycle, including zero-torque commands 
+                               when no rotation is required.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-013 & Commanded actuator torques shall not exceed 
+                               MAX\_ACTUATOR\_TORQUE.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-014 & The SCADS shall accept ground commands via the 
+                               command interface defined in Section 5.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-015 & The SCADS shall validate each received command 
+                               for format correctness and parameter range 
+                               prior to execution.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-016 & The SCADS shall reject invalid commands and 
+                               generate an error response.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-017 & The SCADS shall support the commands defined in 
+                               the command dictionary [TBD: Appendix].
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-018 & The SCADS shall track the operational status of 
+                               each sensor.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-019 & The SCADS shall track the execution status of 
+                               each critical task, including last execution 
+                               time and missed deadline count.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-020 & Health status shall be made available to fault 
+                               detection logic defined in Section 3.4.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-021 & The SCADS shall maintain a monotonic system time, 
+                               initialized at boot, with a resolution of no 
+                               less than SYSTEM\_TIME\_RESOLUTION.
+                             & TBD - STPP \\ \hline
+            SCADS-FR-REQ-022 & The SCADS shall log the current operational 
+                               mode, attitude estimate, and detected fault 
+                               events to non-volatile storage.
+                             & TBD - STPP \\ \hline
+            \end{longtable}
+
         \subsection{Fault Detection Requirements}
 
     \section{Performance Requirements}
-
-        Control loop rate (Hz)
-        Attitude estimation rate (Hz)
-        Command response latency (ms)
-        Telemetry rate (Hz)
-        Boot time to operational (s)
-        Pointing accuracy (degrees, if you care)
-        Rate damping performance (time to reduce from X rad/s to Y rad/s in Detumble)
 
         \begin{table}[H]
         \caption{Performance Requirements}
@@ -327,11 +422,6 @@
 
     \section{Interface Requirements}
 
-        Ground command interface (e.g., "shall accept commands over UART at 115200 baud")
-        Telemetry output interface (same or separate UART)
-        Sensor input interface (whatever your simulator uses — file I/O, shared memory, UART from a host)
-        Actuator output interface (similar, whatever drives your actuator model)
-
         \begin{table}[H]
         \caption{Interface Requirements}
         \vspace{4pt}
@@ -345,11 +435,8 @@
         \end{table}
 
     \section{Safety and Fault Tolerance Requirements}
-        "Upon fault detection, the ADCS shall transition to Safe Mode within [TBD] ms."
-        "The ADCS shall maintain sufficient power margin in Safe Mode to operate for [TBD] hours."
-        "The ADCS shall log fault events to non-volatile memory."
-        "No single sensor failure shall cause loss of attitude determination" (aspirational — depends on sensor suite)
-        \begin{table}[H]
+
+    \begin{table}[H]
         \caption{Safety and Fault Tolerance Requirements}
         \vspace{4pt}
         \centering
@@ -361,12 +448,8 @@
         \end{tabular}
         \end{table}
 
-
     \section{Operational Environment Requirements}
-        Orbital parameters (LEO, altitude, inclination — drives thermal, radiation, eclipse timing)
-        Radiation environment (SEU rate expectations, if hardened)
-        Temperature range
-        Duty cycle (continuous operation vs. eclipse-only)
+
         \begin{table}[H]
         \caption{Operational Environment Requirements}
         \vspace{4pt}
@@ -378,6 +461,21 @@
         SRS-OE-REQ-001 & Spacecraft Cube Attitude Determination System & AC \\ \hline
         \end{tabular}
         \end{table}
+
+    \section{Appendix}
+
+        \begin{table}[H]
+        \caption{Command Definitions}
+        \vspace{4pt}
+        \centering
+        \renewcommand{\arraystretch}{1.4}
+        \begin{tabular}{|l|p{15cm}|}
+        \hline
+        \textbf{Command ID} & \textbf{Definition} \\ \hline
+        COMMAND-1 & COMMAND-1 DESCRIPTION \\ \hline
+        \end{tabular}
+        \end{table}
+
 
 \end{document}
 
