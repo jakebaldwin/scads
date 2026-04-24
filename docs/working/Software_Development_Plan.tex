@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{plex-sans}
+
+\title{SCADS Software Development Plan}
+\author{jake baldwin}
+\date{\today}
+
+\begin{document}
+    \maketitle
+
+    \section{Project Overview}
+    SCADS, Spacecraft Cube Attitude Determination System, is attitude 
+    determination flight software for a simple rigid body cube spacecraft in 
+    orbit. The end goal is to complete the following objectives: 
+        \begin{itemize}
+            \item Write the real time operating system based on FreeRTOS
+            \item Prove the tasks and ISRs are possible via Rate Monotonic
+                Scheduling Analysis
+            \item Create a simulation environment that can support SIL and HIL
+                simulations, with a 3D visualization component
+        \end{itemize}
+
+    \section{Milestones}
+    The project began April 19, 2026 and will be considered complete when all 
+    of the requirements are complete and the repository is in a professional 
+    presentable state I am satisfied with.
+
+    \section{Branching Strategy}
+    Branching will be done with rebase and --no-ff, meaning every time a 
+    development branch is merged to main, a merge commit will be created, 
+    which is required to indicate a point in time where the branch was 
+    integrated. Branches should be grouped by overall feature, with a description. For
+    instance:
+    \begin{itemize}
+        \item docs/short-description : documentation work
+        \item dev/short-description : core code and unit test (CUT) work
+        \item sim/short-description : simulation work
+        \item visual/short-description : 3D visualization work
+    \end{itemize}
+
+    \section{Issues and Defects}
+    Issues will be tracked with Github Issues and worked accordingly. Versions
+    will be managed via git tags.
+\end{document}
