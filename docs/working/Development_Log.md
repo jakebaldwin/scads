@@ -1,0 +1,14 @@
+Development Log
+
+What did you do today and why?
+What didn't work and what did you learn?
+What decisions did you make and what were the alternatives you rejected?
+
+
+## April 24 2026
+- Committed current progress of SDP and SRS. Broke it up into several logical
+    commits. Need to be more incremental with commit history for better 
+    rollback points if required.
+- Finished first draft SRS Finite State Machine graph SRS 3.1
+- Finished first draft of State Transition Requirments SRS 3.2
+- Finished first draft of Fault Detection Requirements SRS 3.3
