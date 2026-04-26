@@ -18,11 +18,11 @@
     \section{Scope}\label{sec:scope}
 
         \subsection{Document Overview}
-            This document specifies the software requirements for the Spacecraft Cube 
+            This document specifies the software requirements for the Spacecraft Control 
             Attitude Determination System (SCADS) v1.0. SCADS v1.0 is a portfolio 
             demonstration project implementing a fault-tolerant finite state machine 
-            for attitude determination and control on a simulated 1U CubeSat platform, 
-            running on bare-metal hardware under FreeRTOS.
+            for attitude determination and control on a simulated rigid-body 
+            spaceship platform, running on bare-metal hardware under FreeRTOS.
         \subsection{Scope of v1.0}
             The v1.0 scope covers:
             \begin{itemize}
@@ -73,8 +73,13 @@
             \begin{tabular}{|l|p{14cm}|}
                 \hline
                 \textbf{Term} & \textbf{Definition} \\ \hline
-                SCADS & Spacecraft Cube Attitude Determination System 
-                    \\ \hline
+                SCADS & Spacecraft Control Attitude Determination System \\ \hline
+                SDP & Software Development Plan \\ \hline
+                SSDD & System and Software Design Description \\ \hline
+                STPP & Software Test Plan and Procedures \\ \hline
+                TBD & To be determined \\ \hline
+                GPS & Global Positioning System \\ \hline
+                FreeRTOS & Free Real-Time Operating System \\ \hline
             \end{tabular}
         \end{table}
 
@@ -516,7 +521,7 @@
                                 from a ground station or test fixture.
                               & TBD - STPP \\ \hline
             SCADS-INT-REQ-002 & Ground commands shall conform to the message 
-                                format specified in the Appendix \ref{sec:appendix}.
+                                format specified in Appendix \ref{sec:appendix}.
                               & TBD - STPP \\ \hline
             SCADS-INT-REQ-003 & The SCADS shall provide a telemetry output 
                                 interface for transmitting operational status.
