@@ -168,10 +168,10 @@
                     SR\_TRIGGER\_AGGREGATE\_SAMPLES samples per the last 
                     SR\_AGGREGATE\_SAMPLES. \\ \hline
                 High Rotation & When the measured rate of rotation exceeds 
-                    ROTATION\_RATE\_HIGH radians per second over ROTATION\_SAMPLES\_HIGH 
+                    ROTATION\_RATE\_HIGH $\mathrm{rad/s}^2$ over ROTATION\_SAMPLES\_HIGH 
                     consecutive samples. \\ \hline
                 Low Rotation & When the measured rate of rotation is less than
-                    or equal to ROTATION\_RATE\_LOW radians per second over 
+                    or equal to ROTATION\_RATE\_LOW $\mathrm{rad/s}$ over 
                     ROTATION\_SAMPLES\_LOW consecutive samples. \\ \hline
                 High Uncertainty & When the measured attitude uncertainty exceeds 
                     UNCERATINTY\_HIGH units per UNCERTAINTY\_SAMPLES\_HIGH 
@@ -184,7 +184,7 @@
 
             The following table defines the state transition requirements 
             between the aforementioned states.
-            
+
             \renewcommand{\arraystretch}{1.4}
             \begin{longtable}{|l|p{9cm}|p{5cm}|}
                 \caption{State Transition Requirements} \\
@@ -416,7 +416,7 @@
 
     \section{Performance Requirements}
 
-        
+
         \renewcommand{\arraystretch}{1.4}
         \begin{longtable}{|l|p{9cm}|p{5cm}|}
             \caption{Performance Requirements} \\
@@ -431,7 +431,55 @@
                 \endhead
                 \hline
                 \endfoot
-                SCADS-P-REQ-001 & placeholder & TBD - STPP \\ \hline
+                SCADS-P-REQ-001 & From power on to first completion of one 
+                                  full control cycle, the SCADS shall complete 
+                                  the transition within BOOT\_TIME\_SEC seconds.
+                                & TBD - STPP \\ \hline
+                SCADS-P-REQ-002 & From detection of a fault per Section 2.3, to 
+                                  entry to safe, the SCADS shall complete the 
+                                  transition in less than SAFE\_MODE\_TRANS\_MSEC
+                                  milliseconds.
+                                & TBD - STPP \\ \hline
+                SCADS-P-REQ-003 & When in nominal the SCADS shall maintain 
+                                  attitude within NOMINAL\_ATTITUDE\_VARIATION
+                                  radians of the attitude held at nominal entry.
+                                & TBD - STPP \\ \hline
+                SCADS-P-REQ-004 & When in detumble the SCADS shall reduce 
+                                  overall rotation by no less than
+                                  DETUMBLE\_DAMPENING\_RATE $\mathrm{rad/s}^2$.
+                                & TBD - STPP \\ \hline
+                SCADS-P-REQ-005 & The SCADS shall execute within MAX\_CPU\_USAGE\_PERCENT
+                                  percent CPU utilization on target hardware. 
+                                & TBD - STPP \\ \hline
+                SCADS-P-REQ-006 & The SCADS shall execute within MAX\_RAM\_USAGE\_PERCENT
+                                  percent RAM usage on the target hardware.
+                                & TBD - STPP \\ \hline
+                SCADS-P-REQ-007 & From ground command receipt to dispatch, the
+                                  SCADS shall complete processing within 
+                                  GROUND\_COMMAND\_LATENCY\_MAX milliseconds. & TBD - STPP \\ \hline
+                SCADS-P-REQ-008 & The SCADS shall acknowledge each ground command
+                                  within GROUND\_ACKNOWLEDGEMENT\_MAX milliseconds.
+                                & TBD - STPP \\ \hline
+                SCADS-P-REQ-009 & Each sensor acquisition cycle shall complete 
+                                  within SENSOR\_CYCLE\_MAX\_MS milliseconds.
+                                & TBD - STPP \\ \hline
+                SCADS-P-REQ-010 & When in attitude estimation the SCADS shall 
+                                  reduce attitude uncertaintly from 
+                                  UNCERTAINTY\_HIGH or greater to 
+                                  UNCERTAINTY\_LOW within 
+                                  ESTIMATOR\_CONVERGENCE\_MAX seconds.
+                                & TBD - STPP \\ \hline
+                SCADS-P-REQ-011 & Given an initial rotation rate not exceeding 
+                                  DETUMBLE\_MAX\_INITIAL\_RATE $\mathrm{rad/s}$
+                                  the SCADS shall reduce the rotation rate to 
+                                  below ROTATION\_RATE\_LOW within 
+                                  DETUMBLE\_MAX\_DURATION seconds.
+                                & TBD - STPP \\ \hline
+                SCADS-P-REQ-012 & Each control cycle, from start of computation 
+                                  to issuance of actuator commands, shall 
+                                  complete within CONTROL\_CYCLE\_MAX\_MS 
+                                  milliseconds.
+                                & TBD - STPP \\ \hline
         \end{longtable}
 
     \section{Interface Requirements}
@@ -504,7 +552,12 @@
             \begin{tabular}{|l|p{15cm}|}
                 \hline
                 \textbf{Command ID} & \textbf{Definition} \\ \hline
-                COMMAND-1 & COMMAND-1 DESCRIPTION \\ \hline
+                SAFE\_TO\_NOMINAL    & The command sent to transition from safe
+                                       to nominal. \\ \hline
+                SAFE\_TO\_DETUMBLE   & The command sent to transition from safe
+                                       to detumble. \\ \hline
+                SAFE\_TO\_ESTIMATION & The command sent to transition from safe
+                                       to attitude estimation. \\ \hline
             \end{tabular}
         \end{table}
 
