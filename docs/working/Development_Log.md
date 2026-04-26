@@ -18,3 +18,4 @@ What decisions did you make and what were the alternatives you rejected?
     fault tolerance, and interface requirements.
 - Created TBD_Register to track the outstanding TBDs created in the SRS
 - Some formatting and document cleanup on SRS
+- Stubbed and wrote section 1 of SSDD. Began system design graph
