@@ -1,0 +1,7 @@
+docs/working/*.aux
+docs/working/*.fdb_latexmk
+docs/working/*.fls
+docs/working/*.log
+docs/working/*.pdf
+docs/working/*.synctex.gz
+docs/working/*.synctex(busy)
