@@ -12,3 +12,9 @@ What decisions did you make and what were the alternatives you rejected?
 - Finished first draft SRS Finite State Machine graph SRS 3.1
 - Finished first draft of State Transition Requirments SRS 3.2
 - Finished first draft of Fault Detection Requirements SRS 3.3
+
+## April 26 2026
+- SRS completed first draft of performance, operational environment, safety and
+    fault tolerance, and interface requirements.
+- Created TBD_Register to track the outstanding TBDs created in the SRS
+- Some formatting and document cleanup on SRS
