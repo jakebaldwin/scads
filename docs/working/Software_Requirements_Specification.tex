@@ -59,15 +59,16 @@
         \subsection{Definitions and Acronyms}
 
             \begin{table}[H]
-            \caption{Definitions and Acronyms}
-            \vspace{4pt}
-            \centering
-            \renewcommand{\arraystretch}{1.4}
-            \begin{tabular}{|l|p{14cm}|}
-            \hline
-            \textbf{Requirement ID} & \textbf{Requirements} \\ \hline
-            SRS-F-REQ-001 & Spacecraft Cube Attitude Determination System  \\ \hline
-            \end{tabular}
+                \caption{Definitions and Acronyms}
+                \vspace{4pt}
+                \centering
+                \renewcommand{\arraystretch}{1.4}
+                \begin{tabular}{|l|p{14cm}|}
+                    \hline
+                    \textbf{Requirement ID} & \textbf{Requirements} \\ \hline
+                    SRS-F-REQ-001 & Spacecraft Cube Attitude Determination System 
+                        \\ \hline
+                \end{tabular}
             \end{table}
 
 
@@ -156,156 +157,165 @@
             \centering
             \renewcommand{\arraystretch}{1.4}
             \begin{tabular}{|l|p{14cm}|}
-            \hline
-            \textbf{Phrase} & \textbf{Definition} \\ \hline
-            Sensor Fault & Refers to a sensor going offline for 
-                SD\_CONSECUTIVE\_NUM\_SAMPLES consecutive samples or 
-                SD\_TRIGGER\_AGGREGATE\_SAMPLES samples per the last 
-                SD\_AGGREGATE\_SAMPLES. \\ \hline
-            Sensor Recover & Refers to a sensor coming back online for 
-                SR\_CONSECUTIVE\_NUM\_SAMPLES consecutive samples or 
-                SR\_TRIGGER\_AGGREGATE\_SAMPLES samples per the last 
-                SR\_AGGREGATE\_SAMPLES. \\ \hline
-            High Rotation & When the measured rate of rotation exceeds 
-                ROTATION\_RATE\_HIGH radians per second over ROTATION\_SAMPLES\_HIGH 
-                consecutive samples. \\ \hline
-            Low Rotation & When the measured rate of rotation is less than
-                or equal to ROTATION\_RATE\_LOW radians per second over 
-                ROTATION\_SAMPLES\_LOW consecutive samples. \\ \hline
-            High Uncertainty & When the measured attitude uncertainty exceeds 
-                UNCERATINTY\_HIGH units per UNCERTAINTY\_SAMPLES\_HIGH 
-                consecutive samples. \\ \hline
-            Low Uncertainty & When the measured attitude uncertainty is
-                less than UNCERATINTY\_LOW units per UNCERTAINTY\_SAMPLES\_LOW 
-                consecutive samples. \\ \hline
-            \end{tabular}
+                \hline
+                \textbf{Phrase} & \textbf{Definition} \\ \hline
+                Sensor Fault & Refers to a sensor going offline for 
+                    SD\_CONSECUTIVE\_NUM\_SAMPLES consecutive samples or 
+                    SD\_TRIGGER\_AGGREGATE\_SAMPLES samples per the last 
+                    SD\_AGGREGATE\_SAMPLES. \\ \hline
+                Sensor Recover & Refers to a sensor coming back online for 
+                    SR\_CONSECUTIVE\_NUM\_SAMPLES consecutive samples or 
+                    SR\_TRIGGER\_AGGREGATE\_SAMPLES samples per the last 
+                    SR\_AGGREGATE\_SAMPLES. \\ \hline
+                High Rotation & When the measured rate of rotation exceeds 
+                    ROTATION\_RATE\_HIGH radians per second over ROTATION\_SAMPLES\_HIGH 
+                    consecutive samples. \\ \hline
+                Low Rotation & When the measured rate of rotation is less than
+                    or equal to ROTATION\_RATE\_LOW radians per second over 
+                    ROTATION\_SAMPLES\_LOW consecutive samples. \\ \hline
+                High Uncertainty & When the measured attitude uncertainty exceeds 
+                    UNCERATINTY\_HIGH units per UNCERTAINTY\_SAMPLES\_HIGH 
+                    consecutive samples. \\ \hline
+                Low Uncertainty & When the measured attitude uncertainty is
+                    less than UNCERATINTY\_LOW units per UNCERTAINTY\_SAMPLES\_LOW 
+                    consecutive samples. \\ \hline
+                \end{tabular}
             \end{table}
 
             The following table defines the state transition requirements 
             between the aforementioned states.
             
-            \begin{table}[H]
-            \caption{State Transition Requirements}
-            \vspace{4pt}
-            \centering
             \renewcommand{\arraystretch}{1.4}
-            \begin{tabular}{|l|p{9cm}|p{5cm}|}
-            \hline
-            \textbf{Requirement ID} & \textbf{Requirement} & \textbf{Acceptance Criteria} \\ \hline
-            SCADS-ST-REQ-001 & The SCADS shall transition from attitude 
-                                estimation to nominal when the sensors
-                                indicate uncertainty low. 
-                                & TBD - STPP \\ \hline
-            SCADS-ST-REQ-002 & The SCADS shall transition from nominal 
-                                to detumble with the highest precedence if the
-                                sensors indicate high rotation.& TBD - STPP \\ \hline
-            SCADS-ST-REQ-003 & The SCADS shall transition from nominal 
-                                to safe with the second highest precedence if 
-                                a sensor faults. & TBD - STPP \\ \hline
-            SCADS-ST-REQ-004 & The SCADS shall transition from nominal 
-                                to attitude estimation with the third highest 
-                                precedence if the sensors indicate high 
-                                uncertainty. & TBD - STPP \\ \hline
-            SCADS-ST-REQ-005 & The SCADS shall transition from nominal 
-                                to maneuvering when a maneuver is commanded. 
-                                & TBD - STPP \\ \hline
-            SCADS-ST-REQ-006 & The SCADS shall transition from detumble 
-                                to attitude estimation when the sensors
-                                indicate low rotation. 
-                                & TBD - STPP \\ \hline
-            SCADS-ST-REQ-007 & The SCADS shall transition from maneuvering
-                                to nominal when the commanded maneuver is 
-                                completed. & TBD - STPP \\ \hline
-            SCADS-ST-REQ-008 & The SCADS shall transition from attitude 
-                                estimation to safe if a sensor faults. 
-                                & TBD - STPP \\ \hline
-            SCADS-ST-REQ-009 & The SCADS shall transition from maneuvering 
-                                to detumble when sensors indicate high rotation. 
-                                & TBD - STPP \\ \hline
-            SCADS-ST-REQ-010 & The SCADS shall transition from detumble 
-                                to safe when a sensor faults.
-                                & TBD - STPP \\ \hline
-            SCADS-ST-REQ-011 & The SCADS shall transition from attitude 
-                                estimation to detumble when sensors indicate 
-                                high rotation.
-                                & TBD - STPP \\ \hline
-            SCADS-ST-REQ-012 & The SCADS shall transition from maneuvering to
-                                attitude estimation when sensors indicate 
-                                uncertainty high.
-                                & TBD - STPP \\ \hline
-            SCADS-ST-REQ-013 & The SCADS shall transition from maneuvering to
-                                safe when a sensor faults.
-                                & TBD - STPP \\ \hline
-            SCADS-ST-REQ-014 & The SCADS shall transition from safe to
-                                detumble with the highest precedence when 
-                                sensors recover, a ground command is received, 
-                                and sensors indicate high rotation. 
-                                & TBD - STPP \\ \hline
-            SCADS-ST-REQ-015 & The SCADS shall transition from safe to
-                                attitude estimation with the second highest 
-                                precedence when sensors recover, a 
-                                ground command is received, and sensors 
-                                indicate uncertainty high. 
-                                & TBD - STPP \\ \hline
-            SCADS-ST-REQ-016 & The SCADS shall transition from safe to
-                                nominal with the third highest precedence
-                                when sensors recover, and a ground command is 
-                                received. 
-                                & TBD - STPP \\ \hline
-            SCADS-ST-REQ-017 & The SCADS shall enter detumble when the system
-                                is powered on. & TBD - STPP \\ \hline
-            SCADS-ST-REQ-018 & Upon any transition out of maneuvering prior to
-                                maneuver completion, SCADS shall command all
-                                thrusters to the off state. & TBD - STPP \\ \hline
+            \begin{longtable}{|l|p{9cm}|p{5cm}|}
+                \caption{State Transition Requirements} \\
+                \hline
+                \textbf{Requirement ID} & \textbf{Requirement} & 
+                    \textbf{Acceptance Criteria} \\ \hline
+                \endfirsthead
 
+                \hline
+                \textbf{Requirement ID} & \textbf{Requirement} & 
+                    \textbf{Acceptance Criteria} \\ \hline
+                \endhead
+                \hline
+                \endfoot
+                SCADS-ST-REQ-001 & The SCADS shall transition from attitude 
+                                    estimation to nominal when the sensors
+                                    indicate uncertainty low. 
+                                    & TBD - STPP \\ \hline
+                SCADS-ST-REQ-002 & The SCADS shall transition from nominal 
+                                    to detumble with the highest precedence if the
+                                    sensors indicate high rotation.& TBD - STPP \\ \hline
+                SCADS-ST-REQ-003 & The SCADS shall transition from nominal 
+                                    to safe with the second highest precedence if 
+                                    a sensor faults. & TBD - STPP \\ \hline
+                SCADS-ST-REQ-004 & The SCADS shall transition from nominal 
+                                    to attitude estimation with the third highest 
+                                    precedence if the sensors indicate high 
+                                    uncertainty. & TBD - STPP \\ \hline
+                SCADS-ST-REQ-005 & The SCADS shall transition from nominal 
+                                    to maneuvering when a maneuver is commanded. 
+                                    & TBD - STPP \\ \hline
+                SCADS-ST-REQ-006 & The SCADS shall transition from detumble 
+                                    to attitude estimation when the sensors
+                                    indicate low rotation. 
+                                    & TBD - STPP \\ \hline
+                SCADS-ST-REQ-007 & The SCADS shall transition from maneuvering
+                                    to nominal when the commanded maneuver is 
+                                    completed. & TBD - STPP \\ \hline
+                SCADS-ST-REQ-008 & The SCADS shall transition from attitude 
+                                    estimation to safe if a sensor faults. 
+                                    & TBD - STPP \\ \hline
+                SCADS-ST-REQ-009 & The SCADS shall transition from maneuvering 
+                                    to detumble when sensors indicate high rotation. 
+                                    & TBD - STPP \\ \hline
+                SCADS-ST-REQ-010 & The SCADS shall transition from detumble 
+                                    to safe when a sensor faults.
+                                    & TBD - STPP \\ \hline
+                SCADS-ST-REQ-011 & The SCADS shall transition from attitude 
+                                    estimation to detumble when sensors indicate 
+                                    high rotation.
+                                    & TBD - STPP \\ \hline
+                SCADS-ST-REQ-012 & The SCADS shall transition from maneuvering to
+                                    attitude estimation when sensors indicate 
+                                    uncertainty high.
+                                    & TBD - STPP \\ \hline
+                SCADS-ST-REQ-013 & The SCADS shall transition from maneuvering to
+                                    safe when a sensor faults.
+                                    & TBD - STPP \\ \hline
+                SCADS-ST-REQ-014 & The SCADS shall transition from safe to
+                                    detumble with the highest precedence when 
+                                    sensors recover, a ground command is received, 
+                                    and sensors indicate high rotation. 
+                                    & TBD - STPP \\ \hline
+                SCADS-ST-REQ-015 & The SCADS shall transition from safe to
+                                    attitude estimation with the second highest 
+                                    precedence when sensors recover, a 
+                                    ground command is received, and sensors 
+                                    indicate uncertainty high. 
+                                    & TBD - STPP \\ \hline
+                SCADS-ST-REQ-016 & The SCADS shall transition from safe to
+                                    nominal with the third highest precedence
+                                    when sensors recover, and a ground command is 
+                                    received. 
+                                    & TBD - STPP \\ \hline
+                SCADS-ST-REQ-017 & The SCADS shall enter detumble when the system
+                                    is powered on. & TBD - STPP \\ \hline
+                SCADS-ST-REQ-018 & Upon any transition out of maneuvering prior to
+                                    maneuver completion, SCADS shall command all
+                                    thrusters to the off state. & TBD - STPP \\ \hline
+            \end{longtable}
 
-            \end{tabular}
-            \end{table}
 
         \subsection{Fault Detection Requirements}
             The fault detection requirements are defined in the table below.
 
-            \begin{table}[H]
-            \caption{Fault Detection Requirements}
-            \vspace{4pt}
-            \centering
             \renewcommand{\arraystretch}{1.4}
-            \begin{tabular}{|l|p{9cm}|p{5cm}|}
-            \hline
-            \textbf{Requirement ID} & \textbf{Requirement} & \textbf{Acceptance Criteria} \\ \hline
-            SCADS-FD-REQ-001 & The SCADS shall detect a Sensor Fault for each 
-                             sensor, where Sensor Fault is defined as a sensor 
-                             going offline for SD\_CONSECUTIVE\_NUM\_SAMPLES 
-                             consecutive samples or 
-                             SD\_TRIGGER\_AGGREGATE\_SAMPLES samples per the 
-                             last SD\_AGGREGATE\_SAMPLES. 
-                           & TBD - STPP \\ \hline
-            SCADS-FD-REQ-002 & The SCADS shall detect a sensor out-of-range fault 
-                             for each sensor when any reading exceeds its 
-                            specified minimum or maximum valid range 
-                            [Sensor Specification, TBD]. 
-                           & TBD - STPP \\ \hline
-            SCADS-FD-REQ-003 & The SCADS shall detect a task overrun fault when 
-                             any critical task fails to complete execution 
-                             within its allocated period.
-                           & TBD - STPP \\ \hline
-            SCADS-FD-REQ-004 & The SCADS shall recognize a watchdog-induced reset 
-                             condition upon boot and log it as a watchdog 
-                             timeout fault.
-                           & TBD - STPP \\ \hline
-            SCADS-FD-REQ-005 & The SCADS shall detect an estimator divergence 
-                             fault when the attitude uncertainty exceeds 
-                             UNCERTAINTY\_DIVERGENCE\_THRESHOLD or increases 
-                             monotonically for DIVERGENCE\_SAMPLES consecutive 
-                             samples.
-                           & TBD - STPP \\ \hline
-            SCADS-FD-REQ-006 & Upon detection of any fault defined in 
-                             SCADS-FD-REQ-001 through SCADS-FD-REQ-005, 
-                             the SCADS shall log the fault type, timestamp, 
-                             and originating subsystem to non-volatile storage.
-                           & TBD - STPP \\ \hline
-            \end{tabular}
-            \end{table}
+            \begin{longtable}{|l|p{9cm}|p{5cm}|}
+                \caption{Fault Detection Requirements} \\
+                \hline
+                \textbf{Requirement ID} & \textbf{Requirement} & 
+                    \textbf{Acceptance Criteria} \\ \hline
+                \endfirsthead
+
+                \hline
+                \textbf{Requirement ID} & \textbf{Requirement} & 
+                    \textbf{Acceptance Criteria} \\ \hline
+                \endhead
+                \hline
+                \endfoot
+                SCADS-FD-REQ-001 & The SCADS shall detect a Sensor Fault for each 
+                                 sensor, where Sensor Fault is defined as a sensor 
+                                 going offline for SD\_CONSECUTIVE\_NUM\_SAMPLES 
+                                 consecutive samples or 
+                                 SD\_TRIGGER\_AGGREGATE\_SAMPLES samples per the 
+                                 last SD\_AGGREGATE\_SAMPLES. 
+                               & TBD - STPP \\ \hline
+                SCADS-FD-REQ-002 & The SCADS shall detect a sensor out-of-range fault 
+                                 for each sensor when any reading exceeds its 
+                                specified minimum or maximum valid range 
+                                [Sensor Specification, TBD]. 
+                               & TBD - STPP \\ \hline
+                SCADS-FD-REQ-003 & The SCADS shall detect a task overrun fault when 
+                                 any critical task fails to complete execution 
+                                 within its allocated period.
+                               & TBD - STPP \\ \hline
+                SCADS-FD-REQ-004 & The SCADS shall recognize a watchdog-induced reset 
+                                 condition upon boot and log it as a watchdog 
+                                 timeout fault.
+                               & TBD - STPP \\ \hline
+                SCADS-FD-REQ-005 & The SCADS shall detect an estimator divergence 
+                                 fault when the attitude uncertainty exceeds 
+                                 UNCERTAINTY\_DIVERGENCE\_THRESHOLD or increases 
+                                 monotonically for DIVERGENCE\_SAMPLES consecutive 
+                                 samples.
+                               & TBD - STPP \\ \hline
+                SCADS-FD-REQ-006 & Upon detection of any fault defined in 
+                                 SCADS-FD-REQ-001 through SCADS-FD-REQ-005, 
+                                 the SCADS shall log the fault type, timestamp, 
+                                 and originating subsystem to non-volatile storage.
+                               & TBD - STPP \\ \hline
+            \end{longtable}
 
 
         \subsection{Core Functional Requirements}
@@ -315,167 +325,188 @@
 
             \renewcommand{\arraystretch}{1.4}
             \begin{longtable}{|l|p{9cm}|p{5cm}|}
-            \caption{Functional Requirements} \\
+                \caption{Functional Requirements} \\
+                \hline
+                \textbf{Requirement ID} & \textbf{Requirement} & 
+                    \textbf{Acceptance Criteria} \\ \hline
+                \endfirsthead
+
+                \hline
+                \textbf{Requirement ID} & \textbf{Requirement} & 
+                    \textbf{Acceptance Criteria} \\ \hline
+                \endhead
+                \hline
+                \endfoot
+                SCADS-FR-REQ-001 & The SCADS shall compute an attitude estimate at 
+                                   a rate of no less than 
+                                   ATTITUDE\_ESTIMATE\_RATE\_HZ.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-002 & The attitude estimate shall consist of a 
+                                   quaternion representing spacecraft 
+                                   body-to-inertial orientation and an associated 
+                                   uncertainty value.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-003 & The attitude uncertainty shall be expressed in 
+                                   units of radians.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-004 & The attitude estimator shall make its estimates 
+                                   available for use to other spacecraft systems.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-005 & The SCADS shall compute actuator commands at a 
+                                   rate of no less than CONTROL\_LOOP\_RATE\_HZ.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-006 & In Detumble, the SCADS shall compute actuator 
+                                   commands that reduce spacecraft rotation rate.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-007 & In safe, the SCADS shall compute actuator 
+                                   commands that orient solar arrays toward the sun.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-008 & In Nnminal, the SCADS shall compute actuator 
+                                   commands that maintain the commanded attitude.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-009 & The SCADS shall acquire sensor readings at a
+                                   rate of no less than 
+                                   SENSOR\_ACQUISITION\_RATE\_HZ.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-010 & The SCADS shall convert raw sensor readings into 
+                                   physical units prior to use by other subsystems.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-011 & Each sensor reading shall be associated with a 
+                                   timestamp indicating the time of acquisition.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-012 & The SCADS shall issue actuator commands every 
+                                   control cycle, including zero-torque commands 
+                                   when no rotation is required.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-013 & Commanded actuator torques shall not exceed 
+                                   MAX\_ACTUATOR\_TORQUE.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-014 & The SCADS shall accept ground commands via the 
+                                   command interface defined in Section 5.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-015 & The SCADS shall validate each received command 
+                                   for format correctness and parameter range 
+                                   prior to execution.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-016 & The SCADS shall reject invalid commands and 
+                                   generate an error response.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-017 & The SCADS shall support the commands defined in 
+                                   the command dictionary [TBD: Appendix].
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-018 & The SCADS shall track the operational status of 
+                                   each sensor.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-019 & The SCADS shall track the execution status of 
+                                   each critical task, including last execution 
+                                   time and missed deadline count.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-020 & Health status shall be made available to fault 
+                                   detection logic defined in Section 3.4.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-021 & The SCADS shall maintain a monotonic system time, 
+                                   initialized at boot, with a resolution of no 
+                                   less than SYSTEM\_TIME\_RESOLUTION.
+                                 & TBD - STPP \\ \hline
+                SCADS-FR-REQ-022 & The SCADS shall log the current operational 
+                                   mode, attitude estimate, and detected fault 
+                                   events to non-volatile storage.
+                                 & TBD - STPP \\ \hline
+            \end{longtable}
+
+    \section{Performance Requirements}
+
+        
+        \renewcommand{\arraystretch}{1.4}
+        \begin{longtable}{|l|p{9cm}|p{5cm}|}
+            \caption{Performance Requirements} \\
+                \hline
+                \textbf{Requirement ID} & \textbf{Requirement} & 
+                \textbf{Acceptance Criteria} \\ \hline
+                \endfirsthead
+
+                \hline
+                \textbf{Requirement ID} & \textbf{Requirement} & 
+                \textbf{Acceptance Criteria} \\ \hline
+                \endhead
+                \hline
+                \endfoot
+                SCADS-P-REQ-001 & placeholder & TBD - STPP \\ \hline
+        \end{longtable}
+
+    \section{Interface Requirements}
+
+        \renewcommand{\arraystretch}{1.4}
+        \begin{longtable}{|l|p{9cm}|p{5cm}|}
+            \caption{Interface Requirements} \\
             \hline
             \textbf{Requirement ID} & \textbf{Requirement} & 
-                \textbf{Acceptance Criteria} \\ \hline
+            \textbf{Acceptance Criteria} \\ \hline
             \endfirsthead
 
             \hline
             \textbf{Requirement ID} & \textbf{Requirement} & 
-                \textbf{Acceptance Criteria} \\ \hline
+            \textbf{Acceptance Criteria} \\ \hline
             \endhead
             \hline
             \endfoot
-            SCADS-FR-REQ-001 & The SCADS shall compute an attitude estimate at 
-                               a rate of no less than 
-                               ATTITUDE\_ESTIMATE\_RATE\_HZ.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-002 & The attitude estimate shall consist of a 
-                               quaternion representing spacecraft 
-                               body-to-inertial orientation and an associated 
-                               uncertainty value.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-003 & The attitude uncertainty shall be expressed in 
-                               units of radians.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-004 & The attitude estimator shall make its estimates 
-                               available for use to other spacecraft systems.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-005 & The SCADS shall compute actuator commands at a 
-                               rate of no less than CONTROL\_LOOP\_RATE\_HZ.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-006 & In Detumble, the SCADS shall compute actuator 
-                               commands that reduce spacecraft rotation rate.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-007 & In safe, the SCADS shall compute actuator 
-                               commands that orient solar arrays toward the sun.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-008 & In Nnminal, the SCADS shall compute actuator 
-                               commands that maintain the commanded attitude.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-009 & The SCADS shall acquire sensor readings at a
-                               rate of no less than 
-                               SENSOR\_ACQUISITION\_RATE\_HZ.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-010 & The SCADS shall convert raw sensor readings into 
-                               physical units prior to use by other subsystems.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-011 & Each sensor reading shall be associated with a 
-                               timestamp indicating the time of acquisition.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-012 & The SCADS shall issue actuator commands every 
-                               control cycle, including zero-torque commands 
-                               when no rotation is required.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-013 & Commanded actuator torques shall not exceed 
-                               MAX\_ACTUATOR\_TORQUE.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-014 & The SCADS shall accept ground commands via the 
-                               command interface defined in Section 5.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-015 & The SCADS shall validate each received command 
-                               for format correctness and parameter range 
-                               prior to execution.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-016 & The SCADS shall reject invalid commands and 
-                               generate an error response.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-017 & The SCADS shall support the commands defined in 
-                               the command dictionary [TBD: Appendix].
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-018 & The SCADS shall track the operational status of 
-                               each sensor.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-019 & The SCADS shall track the execution status of 
-                               each critical task, including last execution 
-                               time and missed deadline count.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-020 & Health status shall be made available to fault 
-                               detection logic defined in Section 3.4.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-021 & The SCADS shall maintain a monotonic system time, 
-                               initialized at boot, with a resolution of no 
-                               less than SYSTEM\_TIME\_RESOLUTION.
-                             & TBD - STPP \\ \hline
-            SCADS-FR-REQ-022 & The SCADS shall log the current operational 
-                               mode, attitude estimate, and detected fault 
-                               events to non-volatile storage.
-                             & TBD - STPP \\ \hline
-            \end{longtable}
-
-        \subsection{Fault Detection Requirements}
-
-    \section{Performance Requirements}
-
-        \begin{table}[H]
-        \caption{Performance Requirements}
-        \vspace{4pt}
-        \centering
-        \renewcommand{\arraystretch}{1.4}
-        \begin{tabular}{|l|p{9cm}|p{5cm}|}
-        \hline
-        \textbf{Requirement ID} & \textbf{Requirements} & \textbf{Acceptance Criteria} \\ \hline
-        SRS-P-REQ-001 & Spacecraft Cube Attitude Determination System & AC \\ \hline
-        \end{tabular}
-        \end{table}
-
-    \section{Interface Requirements}
-
-        \begin{table}[H]
-        \caption{Interface Requirements}
-        \vspace{4pt}
-        \centering
-        \renewcommand{\arraystretch}{1.4}
-        \begin{tabular}{|l|p{9cm}|p{5cm}|}
-        \hline
-        \textbf{Requirement ID} & \textbf{Requirements} & \textbf{Acceptance Criteria} \\ \hline
-        SRS-I-REQ-001 & Spacecraft Cube Attitude Determination System & AC \\ \hline
-        \end{tabular}
-        \end{table}
+            SCADS-I-REQ-001 & placeholder
+                            & TBD - STPP \\ \hline
+        \end{longtable}
 
     \section{Safety and Fault Tolerance Requirements}
 
-    \begin{table}[H]
-        \caption{Safety and Fault Tolerance Requirements}
-        \vspace{4pt}
-        \centering
-        \renewcommand{\arraystretch}{1.4}
-        \begin{tabular}{|l|p{9cm}|p{5cm}|}
-        \hline
-        \textbf{Requirement ID} & \textbf{Requirements} & \textbf{Acceptance Criteria} \\ \hline
-        SRS-SFT-REQ-001 & Spacecraft Cube Attitude Determination System & AC \\ \hline
-        \end{tabular}
-        \end{table}
+       \renewcommand{\arraystretch}{1.4}
+       \begin{longtable}{|l|p{9cm}|p{5cm}|}
+           \caption{Safety and Fault Tolerance Requirements} \\
+           \hline
+           \textbf{Requirement ID} & \textbf{Requirement} & 
+           \textbf{Acceptance Criteria} \\ \hline
+           \endfirsthead
+
+           \hline
+           \textbf{Requirement ID} & \textbf{Requirement} & 
+           \textbf{Acceptance Criteria} \\ \hline
+           \endhead
+           \hline
+           \endfoot
+           SCADS-SFT-REQ-001 & placeholder
+                            & TBD - STPP \\ \hline
+       \end{longtable}
 
     \section{Operational Environment Requirements}
 
-        \begin{table}[H]
-        \caption{Operational Environment Requirements}
-        \vspace{4pt}
-        \centering
         \renewcommand{\arraystretch}{1.4}
-        \begin{tabular}{|l|p{9cm}|p{5cm}|}
-        \hline
-        \textbf{Requirement ID} & \textbf{Requirements} & \textbf{Acceptance Criteria} \\ \hline
-        SRS-OE-REQ-001 & Spacecraft Cube Attitude Determination System & AC \\ \hline
-        \end{tabular}
-        \end{table}
+        \begin{longtable}{|l|p{9cm}|p{5cm}|}
+            \caption{Operational Environment Requirements} \\
+            \hline
+            \textbf{Requirement ID} & \textbf{Requirement} & 
+            \textbf{Acceptance Criteria} \\ \hline
+            \endfirsthead
+
+            \hline
+            \textbf{Requirement ID} & \textbf{Requirement} & 
+            \textbf{Acceptance Criteria} \\ \hline
+            \endhead
+            \hline
+            \endfoot
+            SCADS-O-REQ-001 & placeholder
+                            & TBD - STPP \\ \hline
+        \end{longtable}
 
     \section{Appendix}
 
         \begin{table}[H]
-        \caption{Command Definitions}
-        \vspace{4pt}
-        \centering
-        \renewcommand{\arraystretch}{1.4}
-        \begin{tabular}{|l|p{15cm}|}
-        \hline
-        \textbf{Command ID} & \textbf{Definition} \\ \hline
-        COMMAND-1 & COMMAND-1 DESCRIPTION \\ \hline
-        \end{tabular}
+            \caption{Command Definitions}
+            \vspace{4pt}
+            \centering
+            \renewcommand{\arraystretch}{1.4}
+            \begin{tabular}{|l|p{15cm}|}
+                \hline
+                \textbf{Command ID} & \textbf{Definition} \\ \hline
+                COMMAND-1 & COMMAND-1 DESCRIPTION \\ \hline
+            \end{tabular}
         \end{table}
-
 
 \end{document}
 
