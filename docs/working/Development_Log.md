@@ -77,4 +77,5 @@ What decisions did you make and what were the alternatives you rejected?
     run them
 - Updated compiler to use C++26
 - Added health monitor and estimator code stubs
-- Stubbed and wrote section 1 of SSDD. Began system design graph
+- Stubbed and wrote section 1 of SSDD. 
+- Created initial architecture design graph
