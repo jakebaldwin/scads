@@ -21,7 +21,8 @@ In the design phase. Writing the initial project spec, management plan,
 assurance and test procedure. 
 
 ## Building and Running
-TBD
+Be sure to use `git clone --recursive` when initially cloning to pull down
+the submodule dependency, (FreeRTOS Kernel).
 
 ## License
 TBD

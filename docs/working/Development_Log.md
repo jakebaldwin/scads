@@ -18,3 +18,9 @@ What decisions did you make and what were the alternatives you rejected?
     fault tolerance, and interface requirements.
 - Created TBD_Register to track the outstanding TBDs created in the SRS
 - Some formatting and document cleanup on SRS
+
+## April 28 2026
+- Began setting up blinky to run on Tiva C to prove toolchain is working
+- Began thinking about software layout. Determined I will likely need a 
+    hardware interface layer within my FSW to allow for google tests to run
+    on my machine (not on hardware).
