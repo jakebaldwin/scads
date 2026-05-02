@@ -24,3 +24,7 @@ What decisions did you make and what were the alternatives you rejected?
 - Began thinking about software layout. Determined I will likely need a 
     hardware interface layer within my FSW to allow for google tests to run
     on my machine (not on hardware).
+
+## May 2 2026
+- Added TivaWare third party dependency required for blinky
+- Wrote main.c for a simple blinky sample on Tiva C launchpad
