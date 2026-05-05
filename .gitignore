@@ -5,3 +5,5 @@ docs/working/*.log
 docs/working/*.pdf
 docs/working/*.synctex.gz
 docs/working/*.synctex(busy)
+
+flight_software/build

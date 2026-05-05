@@ -24,6 +24,11 @@ assurance and test procedure.
 Be sure to use `git clone --recursive` when initially cloning to pull down
 the submodule dependency, (FreeRTOS Kernel).
 
+To build the flight software:
+`cd flight_software`
+`cmake -B build -DCMAKE_TOOLCHAIN_FILE=cmake/arm-none-eabi.cmake`
+`cmake --build build`
+
 ## License
 TBD
 
