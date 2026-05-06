@@ -2,13 +2,12 @@
 #include "inc/tm4c123gh6pm.h"
 
 void delay(uint32_t iterations) {
-    // sleep for seconds seconds. This needs to be volatile or the optimizer
-    // would ignore this loop entirely
+    // For this simple purpose, do a volatile loop with no processing
+    // the volatile keyword makes sure the optimizer doesn't skip this loop.
     for (volatile uint32_t i = 0; i < iterations; ++i) { /* do nothing */ }
 }
 
 int main() {
-
     // enable port F run mode clock gating control by enabling bit 5 on
     // system control registers
     SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R5;
