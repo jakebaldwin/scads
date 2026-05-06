@@ -21,13 +21,8 @@ In the design phase. Writing the initial project spec, management plan,
 assurance and test procedure. 
 
 ## Building and Running
-Be sure to use `git clone --recursive` when initially cloning to pull down
-the submodule dependency, (FreeRTOS Kernel).
-
-To build the flight software:
-`cd flight_software`
-`cmake -B build -DCMAKE_TOOLCHAIN_FILE=cmake/arm-none-eabi.cmake`
-`cmake --build build`
+To clone the repo, setup, build and flash the flight software, see the setup 
+instructions in docs/toolchain_setup.md
 
 ## License
 TBD

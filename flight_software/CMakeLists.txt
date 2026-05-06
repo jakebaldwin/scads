@@ -34,3 +34,10 @@ add_custom_command(TARGET blinky POST_BUILD
     COMMAND ${CMAKE_SIZE} $<TARGET_FILE:blinky>
     COMMENT "Generating blinky.bin and printing size"
 )
+
+add_custom_target(flash
+    COMMAND openocd -f board/ti_ek-tm4c123gxl.cfg
+        -c "program $<TARGET_FILE:blinky> verify reset exit"
+    DEPENDS blinky
+    COMMENT "Flashing blinky.elf to tiva c launchpad via OpenOCD"
+)
