@@ -18,3 +18,22 @@ What decisions did you make and what were the alternatives you rejected?
     fault tolerance, and interface requirements.
 - Created TBD_Register to track the outstanding TBDs created in the SRS
 - Some formatting and document cleanup on SRS
+
+## April 28 2026
+- Began setting up blinky to run on Tiva C to prove toolchain is working
+- Began thinking about software layout. Determined I will likely need a 
+    hardware interface layer within my FSW to allow for google tests to run
+    on my machine (not on hardware).
+
+## May 2 2026
+- Added TivaWare third party dependency required for blinky
+- Wrote main.c for a simple blinky sample on Tiva C launchpad
+
+## May 4 2026
+- Wrote CMakeLists.txt for blinky project and compiled project
+- Stole toolchain file and modified for this project
+
+## May 5 2026
+- Figured out how to flash binary onto Tiva C and wrote documentation for repo
+  setup
+

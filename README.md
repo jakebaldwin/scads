@@ -21,7 +21,8 @@ In the design phase. Writing the initial project spec, management plan,
 assurance and test procedure. 
 
 ## Building and Running
-TBD
+To clone the repo, setup, build and flash the flight software, see the setup 
+instructions in docs/toolchain_setup.md
 
 ## License
 TBD
