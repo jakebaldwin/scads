@@ -37,3 +37,5 @@ What decisions did you make and what were the alternatives you rejected?
 - Figured out how to flash binary onto Tiva C and wrote documentation for repo
   setup
 
+## May 6 2026
+- Added FreeRTOS to CMakeLists.txt and blinky is still compiling

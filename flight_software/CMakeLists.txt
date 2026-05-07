@@ -6,6 +6,24 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+add_library(freertos_kernel STATIC
+    third_party/FreeRTOS-Kernel/tasks.c
+    third_party/FreeRTOS-Kernel/list.c
+    third_party/FreeRTOS-Kernel/queue.c
+    third_party/FreeRTOS-Kernel/timers.c
+    third_party/FreeRTOS-Kernel/stream_buffer.c
+    third_party/FreeRTOS-Kernel/croutine.c
+    third_party/FreeRTOS-Kernel/event_groups.c
+    third_party/FreeRTOS-Kernel/portable/GCC/ARM_CM4F/port.c
+    third_party/FreeRTOS-Kernel/portable/MemMang/heap_4.c
+)
+
+target_include_directories(freertos_kernel PUBLIC 
+    app/include/
+    third_party/FreeRTOS-Kernel/include/
+    third_party/FreeRTOS-Kernel/portable/GCC/ARM_CM4F
+)
+
 add_executable(blinky
     app/src/main.c
     third_party/tivaware/startup_gcc.c
@@ -26,6 +44,8 @@ target_link_options(blinky PRIVATE
     -T${CMAKE_SOURCE_DIR}/third_party/tivaware/blinky.ld
     -nostartfiles
 )
+
+target_link_libraries(blinky PRIVATE freertos_kernel)
 
 add_custom_command(TARGET blinky POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E echo "OBJCOPY=${CMAKE_OBJCOPY}"
