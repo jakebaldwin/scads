@@ -26,6 +26,8 @@ TivaWare is licensed for use solely with Texas Instruments TM4C
 (Tiva C Series) microcontrollers.
 
 ## Modifications
-
-None. Files are committed verbatim from the SW-TM4C package.
-If any file is ever modified, note the change here.
+- `blinky.ld`: added `_estack = ORIGIN(SRAM) + LENGTH(SRAM);` at end of
+  SECTIONS to define the initial stack pointer symbol referenced by
+  startup_gcc.c
+- `startup_gcc.c added external function prototypes required for FreeRTOS
+  compatibility

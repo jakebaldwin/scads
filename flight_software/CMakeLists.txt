@@ -40,12 +40,13 @@ target_include_directories(blinky PRIVATE
     ${CMAKE_SOURCE_DIR}/third_party/tivaware
     ${CMAKE_SOURCE_DIR}/app/include
 )
+
+target_link_libraries(blinky PRIVATE freertos_kernel)
+
 target_link_options(blinky PRIVATE
     -T${CMAKE_SOURCE_DIR}/third_party/tivaware/blinky.ld
     -nostartfiles
 )
-
-target_link_libraries(blinky PRIVATE freertos_kernel)
 
 add_custom_command(TARGET blinky POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E echo "OBJCOPY=${CMAKE_OBJCOPY}"
