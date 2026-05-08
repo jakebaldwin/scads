@@ -37,3 +37,12 @@ What decisions did you make and what were the alternatives you rejected?
 - Figured out how to flash binary onto Tiva C and wrote documentation for repo
   setup
 
+## May 6 2026
+- Added FreeRTOS to CMakeLists.txt and blinky is still compiling
+
+## May 8 2026
+- Updated main.c to use FreeRTOS, define two trivial tasks for turning LED
+    on and off red and green.
+- Actually ran FreeRTOS software on the launchpad, a blinky with two tasks.
+- Updated the tivaware third party libraries and docs to fix compatibility with
+    FreeRTOS

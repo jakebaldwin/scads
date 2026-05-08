@@ -27,7 +27,6 @@ MEMORY
     FLASH (rx) : ORIGIN = 0x00000000, LENGTH = 0x00040000
     SRAM (rwx) : ORIGIN = 0x20000000, LENGTH = 0x00008000
 }
-
 SECTIONS
 {
     .text :
@@ -55,4 +54,7 @@ SECTIONS
         *(COMMON)
         _ebss = .;
     } > SRAM
+
+    /* Stack grows down from the top of SRAM */
+    _estack = ORIGIN(SRAM) + LENGTH(SRAM);
 }
