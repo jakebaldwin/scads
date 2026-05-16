@@ -25,7 +25,8 @@ target_include_directories(freertos_kernel PUBLIC
 )
 
 add_executable(blinky
-    app/src/main.c
+    app/src/fsm_supervisor.cpp
+    app/src/main.cpp
     third_party/tivaware/startup_gcc.c
 )
 
@@ -35,7 +36,8 @@ set_target_properties(blinky PROPERTIES
 )
 
 target_compile_definitions(blinky PRIVATE PART_TM4C123GH6PM)
-target_compile_options(blinky PRIVATE -O0 -g -Wall -Wextra)
+target_compile_options(blinky PRIVATE -O0 -g -Wall -Wextra -fno-exceptions 
+    -fno-rtti)
 target_include_directories(blinky PRIVATE
     ${CMAKE_SOURCE_DIR}/third_party/tivaware
     ${CMAKE_SOURCE_DIR}/app/include

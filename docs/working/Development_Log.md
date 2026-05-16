@@ -46,3 +46,13 @@ What decisions did you make and what were the alternatives you rejected?
 - Actually ran FreeRTOS software on the launchpad, a blinky with two tasks.
 - Updated the tivaware third party libraries and docs to fix compatibility with
     FreeRTOS
+
+## May 16 2026
+- Converted main.c to main.cpp, had to add compiler options `-fno-exception` and
+    `-fno-rtti` to keep C++ from generating exception table. Since this runs
+    on bare metal we aren't using exceptions. RTTI is used for things like 
+    typeid, which we also do not need.
+- Wrote fsm_supervisor.h and implementation, simple to prove C++ compilation 
+    works and made stubs for state transitions of the FSM.
+- Figured out how to pass objects to FreeRTOS tasks
+- Made simple script for build_and_flash because I kept forgetting the commands
