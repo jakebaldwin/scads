@@ -1,21 +1,25 @@
 #include "fsm_supervisor.h"
 
 void FsmSupervisor::transition_to_nominal() {
-    state_ = SHIP_STATE_NOMINAL;
+    state_ = ShipState::Nominal;
 }
 
 void FsmSupervisor::transition_to_maneuvering() {
-    state_ = SHIP_STATE_MANEUVERING;
+    state_ = ShipState::Maneuvering;
 }
 
 void FsmSupervisor::transition_to_detumble() {
-    state_ = SHIP_STATE_DETUMBLE;
+    state_ = ShipState::Detumble;
 }
 
 void FsmSupervisor::transition_to_attitude_estimation() {
-    state_ = SHIP_STATE_ATTITUDE_ESTIMATION;
+    state_ = ShipState::Attitude_Estimation;
 }
 
 void FsmSupervisor::transition_to_safe() {
-    state_ = SHIP_STATE_SAFE;
+    state_ = ShipState::Safe;
+}
+
+ShipState FsmSupervisor::getState() {
+    return state_;
 }

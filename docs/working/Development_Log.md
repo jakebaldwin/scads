@@ -56,3 +56,8 @@ What decisions did you make and what were the alternatives you rejected?
     works and made stubs for state transitions of the FSM.
 - Figured out how to pass objects to FreeRTOS tasks
 - Made simple script for build_and_flash because I kept forgetting the commands
+
+
+## May 25 2026
+- Made FSM states enum class for more idiomatic C++
+- Added get method to fsm_supervisor

@@ -2,12 +2,12 @@
 #define FSM_SUPERVISOR_H
 
 // Implementatino of SRS Section 3.1 Ship Finite-States
-enum ShipState {
-    SHIP_STATE_NOMINAL = 0,
-    SHIP_STATE_MANEUVERING = 1,
-    SHIP_STATE_DETUMBLE = 2,
-    SHIP_STATE_ATTITUDE_ESTIMATION = 3,
-    SHIP_STATE_SAFE = 4
+enum class ShipState {
+    Nominal,
+    Maneuvering,
+    Detumble,
+    Attitude_Estimation,
+    Safe
 };
 
 class FsmSupervisor {
@@ -22,8 +22,10 @@ public:
     void transition_to_attitude_estimation();
     void transition_to_safe();
 
+    ShipState getState();
+
 private:
-    ShipState state_;
+    ShipState state_ = ShipState::Nominal;
 };
 
 #endif
