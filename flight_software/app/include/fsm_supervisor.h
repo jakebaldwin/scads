@@ -16,6 +16,8 @@ public:
 
     FsmSupervisor() = default;
 
+    void step();
+
     void transition_to_nominal();
     void transition_to_maneuvering();
     void transition_to_detumble();
