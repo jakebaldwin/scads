@@ -24,7 +24,7 @@ public:
     void transition_to_attitude_estimation();
     void transition_to_safe();
 
-    ShipState getState();
+    ShipState get_state();
 
 private:
     ShipState state_ = ShipState::Nominal;
