@@ -20,6 +20,6 @@ void FsmSupervisor::transition_to_safe() {
     state_ = ShipState::Safe;
 }
 
-ShipState FsmSupervisor::getState() {
+ShipState FsmSupervisor::get_state() {
     return state_;
 }

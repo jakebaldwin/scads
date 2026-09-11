@@ -61,3 +61,19 @@ What decisions did you make and what were the alternatives you rejected?
 ## May 25 2026
 - Made FSM states enum class for more idiomatic C++
 - Added get method to fsm_supervisor
+- Wrote sensor manager interface and sensor types to define what data the
+    hardware sensors will provide. I decided to use full suite of industry 
+    standard sensors (accelerometer, magnetometer, star tracker, etc) since 
+    I am not actually purchasing and building these (yet)
+- I decided each sensor reading struct will store timestamp. This makes it
+    more complicated for downstream consumers but its the idiomatic choice
+
+## September 11 2026
+- Wrote unit tests for fsm supervisor and script to run them
+- Decided to place cpp flight logic in its own library so I can unit test it
+    more easily with the cross compliation. This required CMakeLists.txt
+    updates.
+- Wrote scripts/build_and_test.sh to build flight logic library unit tests and
+    run them
+- Updated compiler to use C++26
+- Added health monitor and estimator code stubs

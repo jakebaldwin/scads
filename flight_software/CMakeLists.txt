@@ -2,65 +2,107 @@ cmake_minimum_required(VERSION 3.20)
 project(scads VERSION 0.1 LANGUAGES C CXX ASM)
 
 set(CMAKE_C_STANDARD 11)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 26)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_library(freertos_kernel STATIC
-    third_party/FreeRTOS-Kernel/tasks.c
-    third_party/FreeRTOS-Kernel/list.c
-    third_party/FreeRTOS-Kernel/queue.c
-    third_party/FreeRTOS-Kernel/timers.c
-    third_party/FreeRTOS-Kernel/stream_buffer.c
-    third_party/FreeRTOS-Kernel/croutine.c
-    third_party/FreeRTOS-Kernel/event_groups.c
-    third_party/FreeRTOS-Kernel/portable/GCC/ARM_CM4F/port.c
-    third_party/FreeRTOS-Kernel/portable/MemMang/heap_4.c
-)
+option(BUILD_TESTS "Build unit tests" OFF)
 
-target_include_directories(freertos_kernel PUBLIC 
-    app/include/
-    third_party/FreeRTOS-Kernel/include/
-    third_party/FreeRTOS-Kernel/portable/GCC/ARM_CM4F
-)
+if (NOT BUILD_TESTS)
 
-add_executable(blinky
-    app/src/fsm_supervisor.cpp
-    app/src/main.cpp
-    third_party/tivaware/startup_gcc.c
-)
+    add_library(freertos_kernel STATIC
+        third_party/FreeRTOS-Kernel/tasks.c
+        third_party/FreeRTOS-Kernel/list.c
+        third_party/FreeRTOS-Kernel/queue.c
+        third_party/FreeRTOS-Kernel/timers.c
+        third_party/FreeRTOS-Kernel/stream_buffer.c
+        third_party/FreeRTOS-Kernel/croutine.c
+        third_party/FreeRTOS-Kernel/event_groups.c
+        third_party/FreeRTOS-Kernel/portable/GCC/ARM_CM4F/port.c
+        third_party/FreeRTOS-Kernel/portable/MemMang/heap_4.c
+    )
 
-set_target_properties(blinky PROPERTIES
-    SUFFIX ".elf"
-    LINK_DEPENDS ${CMAKE_SOURCE_DIR}/third_party/tivaware/blinky.ld
-)
+    target_include_directories(freertos_kernel PUBLIC 
+        app/include/
+        third_party/FreeRTOS-Kernel/include/
+        third_party/FreeRTOS-Kernel/portable/GCC/ARM_CM4F
+    )
 
-target_compile_definitions(blinky PRIVATE PART_TM4C123GH6PM)
-target_compile_options(blinky PRIVATE -O0 -g -Wall -Wextra -fno-exceptions 
-    -fno-rtti)
-target_include_directories(blinky PRIVATE
-    ${CMAKE_SOURCE_DIR}/third_party/tivaware
-    ${CMAKE_SOURCE_DIR}/app/include
-)
+    add_executable(blinky
+        app/src/main.cpp
+        app/src/fsm_supervisor.cpp
+        third_party/tivaware/startup_gcc.c
+    )
 
-target_link_libraries(blinky PRIVATE freertos_kernel)
+    set_target_properties(blinky PROPERTIES
+        SUFFIX ".elf"
+        LINK_DEPENDS ${CMAKE_SOURCE_DIR}/third_party/tivaware/blinky.ld
+    )
 
-target_link_options(blinky PRIVATE
-    -T${CMAKE_SOURCE_DIR}/third_party/tivaware/blinky.ld
-    -nostartfiles
-)
+    target_compile_definitions(blinky PRIVATE PART_TM4C123GH6PM)
+    target_compile_options(blinky PRIVATE -O0 -g -Wall -Wextra -fno-exceptions 
+        -fno-rtti)
+    target_include_directories(blinky PRIVATE
+        ${CMAKE_SOURCE_DIR}/third_party/tivaware
+        ${CMAKE_SOURCE_DIR}/app/include
+    )
 
-add_custom_command(TARGET blinky POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E echo "OBJCOPY=${CMAKE_OBJCOPY}"
-    COMMAND ${CMAKE_COMMAND} -E echo "SIZE=${CMAKE_SIZE}"
-    COMMAND ${CMAKE_OBJCOPY} -O binary $<TARGET_FILE:blinky> $<TARGET_FILE_DIR:blinky>/blinky.bin
-    COMMAND ${CMAKE_SIZE} $<TARGET_FILE:blinky>
-    COMMENT "Generating blinky.bin and printing size"
-)
+    target_link_libraries(blinky PRIVATE freertos_kernel)
 
-add_custom_target(flash
-    COMMAND openocd -f board/ti_ek-tm4c123gxl.cfg
-        -c "program $<TARGET_FILE:blinky> verify reset exit"
-    DEPENDS blinky
-    COMMENT "Flashing blinky.elf to tiva c launchpad via OpenOCD"
-)
+    target_link_options(blinky PRIVATE
+        -T${CMAKE_SOURCE_DIR}/third_party/tivaware/blinky.ld
+        -nostartfiles
+    )
+
+    add_custom_command(TARGET blinky POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E echo "OBJCOPY=${CMAKE_OBJCOPY}"
+        COMMAND ${CMAKE_COMMAND} -E echo "SIZE=${CMAKE_SIZE}"
+        COMMAND ${CMAKE_OBJCOPY} -O binary $<TARGET_FILE:blinky> $<TARGET_FILE_DIR:blinky>/blinky.bin
+        COMMAND ${CMAKE_SIZE} $<TARGET_FILE:blinky>
+        COMMENT "Generating blinky.bin and printing size"
+    )
+
+    add_custom_target(flash
+        COMMAND openocd -f board/ti_ek-tm4c123gxl.cfg
+            -c "program $<TARGET_FILE:blinky> verify reset exit"
+        DEPENDS blinky
+        COMMENT "Flashing blinky.elf to tiva c launchpad via OpenOCD"
+    )
+endif()
+
+
+if (BUILD_TESTS)
+
+    add_library(flight_logic STATIC
+        app/src/fsm_supervisor.cpp
+    )
+
+    target_include_directories(flight_logic PUBLIC app/include)
+
+    # testing code
+    include(FetchContent)
+    FetchContent_Declare(
+      googletest
+      GIT_REPOSITORY https://github.com/google/googletest.git
+      GIT_TAG v1.18.0
+      DOWNLOAD_EXTRACT_TIMESTAMP TRUE
+    )
+
+    FetchContent_MakeAvailable(googletest)
+
+    enable_testing()
+
+    add_executable(flight_logic_tests
+        tests/src/fsm_supervisor_test.cpp
+    )
+
+    target_link_libraries(
+        flight_logic_tests
+        GTest::gtest_main
+        flight_logic
+    )
+
+    include(GoogleTest)
+    gtest_discover_tests(flight_logic_tests)
+endif()
+
